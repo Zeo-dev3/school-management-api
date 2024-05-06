@@ -30,3 +30,19 @@ model Product {
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
 }
+
+model User {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique @db.VarChar(50)
+  pin         String
+  coins       Int     @default(0)
+  creditScore Int     @default(100) @map("credit_score")
+  alamat      String?
+  kelas       Kelas
+}
+
+enum Kelas {
+  KELAS_10_SMA
+  KELAS_11_SMA
+  KELAS_12_SMA
+}

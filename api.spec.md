@@ -170,3 +170,36 @@ http://localhost:3000
   "name": "Makanan"
 }
 ```
+
+### 5. Register user
+
+- **URL:** /auth/register
+- **Method:** POST
+- **Description:** Add a new user.
+- **Request Body:**
+
+```json
+{
+  "name": "string,max 50 char",
+  "pin": "6 digit pin",
+  "alamat": "optional",
+  "kelas": "enum kelas"
+}
+```
+
+```
+enum Kelas {
+  KELAS_10_SMA
+  KELAS_11_SMA
+  KELAS_12_SMA
+}
+```
+
+- **Expected respose:**
+
+```json
+{
+  "id": number,
+  "name":"created user name"
+}
+```
