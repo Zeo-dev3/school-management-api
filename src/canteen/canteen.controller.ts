@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { CanteenService } from './canteen.service';
 import { CanteenProductDto } from './dtos/canteenProduct.dto';
 import { CanteenCategoryDto } from './dtos/canteenCategoryDto';
@@ -13,8 +22,18 @@ export class CanteenController {
   }
 
   @Post('add-product')
-  async addProduct(@Body('productData') productData: CanteenProductDto) {
+  async addProduct(@Body() productData: CanteenProductDto) {
     return await this.canteenService.addProduct(productData);
+  }
+
+  @Put('update-product/:id')
+  async updateProduct(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() productData: CanteenProductDto,
+  ) {
+    console.log('id:', id);
+    console.log('productData:', productData);
+    return await this.canteenService.updateProduct(id, productData);
   }
 
   @Post('add-category')
@@ -22,8 +41,9 @@ export class CanteenController {
     return this.canteenService.addCategory(categoryData);
   }
 
-  @Post('test')
-  test(@Body('username') username: string, @Body('userData') userData: any) {
-    return { username, userData };
+  @Post('/test/:id')
+  test(@Body() productData, @Query('id') id: number) {
+    console.log(id);
+    return { productData, id };
   }
 }

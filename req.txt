@@ -1,0 +1,15 @@
+{
+"productData": {
+"name": "bakso tanpa bkp",
+"price": 50000,
+"stock": 189,
+"rating": 4.9,
+"reviewers": 24,
+"shopName": "s;amet kopling",
+"categoryId": 2
+}
+}
+
+
+
+
