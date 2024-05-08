@@ -6,7 +6,7 @@ This document outlines the specification for the Canteen API.
 
 ## Base URL
 
-http://localhost:3000
+http://localhost:8000
 
 ## Endpoints
 

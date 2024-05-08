@@ -32,12 +32,18 @@ $ docker-compose up
 
 4. Setup .env files
 
-   Create a .env file for the database and add your database URL.
+   Create a .env file for the database and add your database URL and secret key for jwt token.
 
-   If you're using docker-compose, create a .env file in the root directory of your project and add the following configuration:
+```
+DATABASE_URL="your postgres url"
+JWT_SECRET_TOKEN="your secret key"
+```
+
+If you're using docker-compose, create a .env file in the root directory of your project and add the following configuration:
 
 ```
 DATABASE_URL="postgresql://sekolah:jahat@localhost:5435/mydb"
+JWT_SECRET_TOKEN="your secret key"
 ```
 
 5. Migrate the database
