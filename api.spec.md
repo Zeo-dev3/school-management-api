@@ -10,7 +10,9 @@ http://localhost:8000
 
 ## Endpoints
 
-### 1. Get Products
+# 1. Canteen products api
+
+### 1. Get products
 
 - **URL:** `/canteen/products`
 - **Method:** `GET`
@@ -171,7 +173,9 @@ http://localhost:8000
 }
 ```
 
-### 5. Register user
+# 2. Auth api
+
+### 1. Register user
 
 - **URL:** /auth/register
 - **Method:** POST
@@ -195,11 +199,60 @@ enum Kelas {
 }
 ```
 
-- **Expected respose:**
+- **Respose:**
 
 ```json
 {
   "id": number,
   "name":"created user name"
 }
+```
+
+### Login user
+
+- **URL:** /auth/login
+- **Method:** POST
+- **Description:** Login to get jwt token.
+- **Request Body:**
+
+```json
+{
+  "name": "user that already registered",
+  "pin": "user pin"
+}
+```
+
+- **Response:**
+
+```json
+{
+  "message": "login berhasil",
+  "token": "jwt token"
+}
+```
+
+# 3. Subjects api
+
+### 1. Get all mapel
+
+- **URL:** /subjects/mapel
+- **Method:** GET
+- **Description:** Request to get all created mapel.
+- **Response:**
+
+```json
+{
+  "mapel": "mapel name"
+}
+```
+
+### 2. Get all materi
+
+- **URL:** /subjects/materi
+- **Method:** GET
+- **Description:** Request to get all created materi.
+- **Response:**
+
+```json
+{}
 ```

@@ -46,3 +46,18 @@ enum Kelas {
   KELAS_11_SMA
   KELAS_12_SMA
 }
+
+model Mapel {
+  id     Int      @id @default(autoincrement())
+  mapel  String
+  materi Materi[]
+}
+
+model Materi {
+  id      Int    @id @default(autoincrement())
+  name    String
+  author  String
+  lesson  String
+  Mapel   Mapel? @relation(fields: [mapelId], references: [id])
+  mapelId Int?
+}
