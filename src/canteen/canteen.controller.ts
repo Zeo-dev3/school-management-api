@@ -9,8 +9,11 @@ import {
   Query,
 } from '@nestjs/common';
 import { CanteenService } from './canteen.service';
-import { CanteenProductDto } from './dtos/canteenProduct.dto';
-import { CanteenCategoryDto } from './dtos/canteenCategoryDto';
+import { ZodValidationPipe } from 'src/model/zod-validation/zod-validation.pipe';
+import { CanteenProductDto } from 'src/model/canteen-schema/canteenProductSchema';
+import { CanteenProductSchema } from 'src/model/canteen-schema/canteenProductSchema';
+import { CanteenCategoryDto } from 'src/model/canteen-schema/canteenCategorySchema';
+import { CanteenCategorySchema } from 'src/model/canteen-schema/canteenCategorySchema';
 
 @Controller('canteen')
 export class CanteenController {
@@ -22,7 +25,10 @@ export class CanteenController {
   }
 
   @Post('add-product')
-  async addProduct(@Body() productData: CanteenProductDto) {
+  async addProduct(
+    @Body(new ZodValidationPipe(CanteenProductSchema))
+    productData: CanteenProductDto,
+  ) {
     return await this.canteenService.addProduct(productData);
   }
 
@@ -37,7 +43,10 @@ export class CanteenController {
   }
 
   @Post('add-category')
-  async addCategory(@Body() categoryData: CanteenCategoryDto) {
+  async addCategory(
+    @Body(new ZodValidationPipe(CanteenCategorySchema))
+    categoryData: CanteenCategoryDto,
+  ) {
     return this.canteenService.addCategory(categoryData);
   }
 

@@ -1,6 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CanteenProductDto } from './dtos/canteenProduct.dto';
+import { CanteenCategoryDto } from 'src/model/canteen-schema/canteenCategorySchema';
+import { CanteenProductDto } from 'src/model/canteen-schema/canteenProductSchema';
 
 @Injectable()
 export class CanteenService {
@@ -38,26 +39,31 @@ export class CanteenService {
         name: productData.name,
         price: productData.price,
         stock: productData.stock,
-        rating: productData.rating,
-        reviewers: productData.reviewers,
         shopName: productData.shopName,
         category: { connect: { id: productData.categoryId } },
       },
     });
 
-    return newProduct;
+    return {
+      message: 'Successfully added new product',
+      productId: newProduct.id,
+      productName: newProduct.name,
+    };
   }
 
-  async addCategory(category) {
+  async addCategory(category: CanteenCategoryDto) {
     const newCategory = await this.prisma.category.create({
       data: {
-        ...category,
+        name: category.name,
       },
     });
 
     if (!category) throw new HttpException('Failed to create category', 500);
 
-    return newCategory;
+    return {
+      message: 'Successfully added new category',
+      categoryName: newCategory,
+    };
   }
 
   async updateProduct(id, productData: CanteenProductDto) {

@@ -1,11 +1,12 @@
 import { HttpException, Injectable } from '@nestjs/common';
+import { MateriDto } from 'src/model/subjects-schema/materiSchema';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class MateriService {
   constructor(private prisma: PrismaService) {}
 
-  async addMateri(materiDto) {
+  async addMateri(materiDto: MateriDto) {
     const newMateri = await this.prisma.materi.create({
       data: {
         name: materiDto.name,
@@ -17,7 +18,11 @@ export class MateriService {
 
     if (!newMateri)
       throw new HttpException('cannot create materi,server error', 500);
-    return newMateri;
+    return {
+      message: 'Materi successfully added',
+      Id: newMateri.id,
+      Name: newMateri.name,
+    };
   }
 
   async getAllMateri() {

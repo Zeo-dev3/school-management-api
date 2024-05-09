@@ -104,14 +104,9 @@ http://localhost:8000
 
 ```json
 {
-  "id": 5,
-  "name": "Product Name",
-  "price": 1000,
-  "stock": 50,
-  "rating": 4.2,
-  "reviewers": 10,
-  "shopName": "Shop Name",
-  "categoryId": 1
+  "message": "Successfully added new product",
+  "productId": 1,
+  "productName": "product name"
 }
 ```
 
@@ -168,8 +163,8 @@ http://localhost:8000
 
 ```json
 {
-  "id": 4,
-  "name": "Makanan"
+  "message": "Successfully added new category",
+  "categoryName": "newCategory"
 }
 ```
 
@@ -203,8 +198,8 @@ enum Kelas {
 
 ```json
 {
-  "id": number,
-  "name":"created user name"
+  "message": "User created successfully",
+  "userId": 4
 }
 ```
 
@@ -254,5 +249,100 @@ enum Kelas {
 - **Response:**
 
 ```json
-{}
+{
+  [
+    {
+        "id": 1,
+        "mapel": "Matematika",
+        "materi": [
+            {
+                "id": 1,
+                "name": "linear algebra",
+                "author": "bambang alpukat",
+                "lesson": "Matematika",
+                "mapelId": 1
+            },
+            {
+                "id": 2,
+                "name": "calculus",
+                "author": "ogiwara sayu",
+                "lesson": "Matematika",
+                "mapelId": 1
+            },
+            {
+                "id": 3,
+                "name": "statistic",
+                "author": "ogiwara sayu",
+                "lesson": "Matematika",
+                "mapelId": 1
+            },
+            {
+                "id": 4,
+                "name": "vector",
+                "author": "ogiwara sayu",
+                "lesson": "Matematika",
+                "mapelId": 1
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "mapel": "Ilmu pengetahuan alam",
+        "materi": []
+    },
+    {
+        "id": 3,
+        "mapel": "Ilmu pengetahuan sosial",
+        "materi": []
+    }
+]
+}
+```
+
+### 3. Add new mapel
+
+- **URL:** /subjects/new-mapel
+- **Method:** POST
+- **Description:** Create new mapel.
+- **Request Body:**
+
+```json
+{
+  "mapel": "mapel name"
+}
+```
+
+- **Response:**
+
+```json
+{
+  "message": "Successfully added new mapel",
+  "mapelName": "Mapel name"
+}
+```
+
+### 4. Add materi
+
+- **URL:** /subjects/new-materi
+- **Method:** POST
+- **Description:** Create new materi.
+- **Request Body:**
+
+```json
+{
+  "name": "",
+  "author": "",
+  "lesson": "",
+  "mapelId": 1
+}
+```
+
+- **Response:**
+
+```json
+{
+  "message": "Materi successfully added",
+  "Id": "Materi id",
+  "Name": "Materi name"
+}
 ```

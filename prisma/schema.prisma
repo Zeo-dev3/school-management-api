@@ -24,8 +24,8 @@ model Product {
   name       String
   price      Float
   stock      Int
-  rating     Float
-  reviewers  Int
+  rating     Float    @default(0)
+  reviewers  Int      @default(0)
   shopName   String   @map("shop_name")
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])

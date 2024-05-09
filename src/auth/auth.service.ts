@@ -5,10 +5,10 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UserService } from 'src/user/user.service';
-import { RegisterUserDTO } from './dtos/registerUser.dto';
-import * as bcrypt from 'bcrypt';
-import { LoginDto } from './dtos/loginDto';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+import { RegisterUserDTO } from 'src/model/auth-schema/registerUserSchema';
+import { LoginDto } from '../model/auth-schema/loginSchema';
 
 @Injectable()
 export class AuthService {
@@ -38,7 +38,10 @@ export class AuthService {
 
     if (!createdUser) throw new HttpException('Failed to register user', 500);
 
-    return createdUser;
+    return {
+      message: 'User created successfully',
+      userId: createdUser.id,
+    };
   }
 
   async validateUSer(loginDto: LoginDto) {
@@ -58,7 +61,7 @@ export class AuthService {
     });
 
     return {
-      msg: 'login success',
+      message: 'login success',
       token,
     };
   }
