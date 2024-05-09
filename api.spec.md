@@ -93,8 +93,6 @@ http://localhost:8000
   "name": "Product Name",
   "price": 1000,
   "stock": 50,
-  "rating": 4.2,
-  "reviewers": 10,
   "shopName": "Shop Name",
   "categoryId": 1
 }
