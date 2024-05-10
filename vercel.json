@@ -19,7 +19,8 @@
     "installCommand": "npm install",
     "devCommand": "npm run start:dev",
     "environmentVariables": {
-      "API_KEY": "@api_key"
+      "DATABASE_URL": "postgres://postgres.ubrzvwduvdoqtbikjmij:ogiwara sayu@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres",
+      "JWT_SECRET_TOKEN": "556bc519614b7c5f956b5ea2606e9934a533939a"
     }
   }
 }
