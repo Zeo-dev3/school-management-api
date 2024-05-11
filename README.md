@@ -6,8 +6,9 @@ This repository contains the source code for a NestJS-based API application desi
 
 ## Features
 
-- REST API for managing the school canteen
-- [Future] Subject management
+- REST API For managing the school canteen
+- REST API Subject management
+- REST API Authentication & authorization
 - [Future] Exams management
 - [Future] Additional features for comprehensive school management
 
