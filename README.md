@@ -1,4 +1,8 @@
-![WhatsApp_Image_2024-05-11_at_3 34 55_PM-removebg-preview (1)](https://github.com/Zeo-dev3/school-management-api/assets/152672843/3a4a9801-614b-4365-b90d-42d8c957a89c)
+<center>
+
+![WhatsApp_Image_2024-05-11_at_3 46 05_PM-removebg-preview (1)](https://github.com/Zeo-dev3/school-management-api/assets/152672843/d3b3867c-fcd1-493d-8da1-b8a331e17a8f)
+
+</center>
 
 # NestJS School Management API
 
