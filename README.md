@@ -1,3 +1,5 @@
+![WhatsApp_Image_2024-05-11_at_3 34 55_PM-removebg-preview (1)](https://github.com/Zeo-dev3/school-management-api/assets/152672843/3a4a9801-614b-4365-b90d-42d8c957a89c)
+
 # NestJS School Management API
 
 This repository contains the source code for a NestJS-based API application designed to facilitate school management. The current functionality includes a REST API for managing the school canteen. Future development plans include adding features such as subject management, exams, and more to meet the comprehensive needs of a school application.
@@ -43,12 +45,12 @@ REDIS_PORT=your redis port
 
 If you're using docker-compose, create a .env file in the root directory of your project and add the following configuration:
 
-````
+```
 DATABASE_URL="postgresql://sekolah:jahat@localhost:5435/mydb"
 JWT_SECRET_TOKEN="your secret key"
 REDIS_HOST="0.0.0.0"
 REDIS_PORT=6379
-``
+```
 
 Deployment env
 
@@ -61,7 +63,7 @@ JWT_SECRET_TOKEN="your secret key"
 
 ```bash
 $ npx prisma migrate dev
-````
+```
 
 6. Start the server:
 
