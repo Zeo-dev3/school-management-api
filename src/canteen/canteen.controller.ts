@@ -55,4 +55,9 @@ export class CanteenController {
     console.log(id);
     return { productData, id };
   }
+
+  @Get('halo')
+  tessss() {
+    return 'hello';
+  }
 }

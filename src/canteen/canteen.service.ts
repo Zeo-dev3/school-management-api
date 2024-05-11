@@ -1,13 +1,25 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CanteenCategoryDto } from 'src/model/canteen-schema/canteenCategorySchema';
 import { CanteenProductDto } from 'src/model/canteen-schema/canteenProductSchema';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class CanteenService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
 
   async getProducts() {
+    console.log('service trigerred');
+    const cachedProduct = await this.cacheManager.get('product');
+
+    console.log(cachedProduct);
+
+    if (cachedProduct) return JSON.parse(cachedProduct as string);
+
     const products = await this.prisma.category.findMany({
       include: {
         products: {
@@ -22,6 +34,8 @@ export class CanteenService {
     });
 
     if (!products) throw new HttpException('Products not found', 404);
+    await this.cacheManager.set('product', JSON.stringify(products));
+
     return products;
   }
 

@@ -37,12 +37,23 @@ $ docker-compose up
 ```
 DATABASE_URL="your postgres url"
 JWT_SECRET_TOKEN="your secret key"
+REDIS_HOST="your redis host"
+REDIS_PORT=your redis port
 ```
 
 If you're using docker-compose, create a .env file in the root directory of your project and add the following configuration:
 
-```
+````
 DATABASE_URL="postgresql://sekolah:jahat@localhost:5435/mydb"
+JWT_SECRET_TOKEN="your secret key"
+REDIS_HOST="0.0.0.0"
+REDIS_PORT=6379
+``
+
+Deployment env
+
+```
+DATABASE_URL="postgres://postgres.ubrzvwduvdoqtbikjmij:ogiwara sayu@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres"
 JWT_SECRET_TOKEN="your secret key"
 ```
 
@@ -50,7 +61,7 @@ JWT_SECRET_TOKEN="your secret key"
 
 ```bash
 $ npx prisma migrate dev
-```
+````
 
 6. Start the server:
 
