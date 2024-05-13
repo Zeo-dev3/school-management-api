@@ -7,15 +7,25 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
-import { ChatService } from './chat.service';
+import { ChatService } from './service/chat.service';
+import { MessageService } from './service/message.service';
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: {
+    origin: '*',
+  },
+})
 export class ChatGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
-  constructor(private chatService: ChatService) {}
+  constructor(
+    private chatService: ChatService,
+    private messageService: MessageService,
+  ) {}
 
   @WebSocketServer() server: Server;
+
+  private rooms = new Map<string, string[]>();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   afterInit(server: Server) {
@@ -32,9 +42,9 @@ export class ChatGateway
   }
 
   @SubscribeMessage('sendMessage')
-  async handleMessage(client: Socket, message: string): Promise<void> {
+  async handleMessage(client: Socket, message: string) {
     const senderId = client.id;
-    const result = await this.chatService.sendMessage(senderId, message);
+    const result = await this.messageService.createMessage(senderId, message);
 
     // Convert the IterableIterator to an array
     const recipients = Array.from(this.server.sockets.sockets.values());
@@ -49,4 +59,10 @@ export class ChatGateway
       recipient.emit('newMessage', result);
     }
   }
+
+  @SubscribeMessage('join')
+  joinRoom(client: Socket) {}
+
+  @SubscribeMessage('typing')
+  async typing() {}
 }
