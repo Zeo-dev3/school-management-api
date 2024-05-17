@@ -7,8 +7,9 @@ import {
   MateriDto,
   MateriSchema,
 } from 'src/model/subjects-schema/materiSchema';
+import { Routes } from 'src/utils/constant';
 
-@Controller('subjects')
+@Controller(Routes.SUBJECTS)
 export class MapelController {
   constructor(
     private mapelService: MapelService,

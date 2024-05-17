@@ -6,8 +6,10 @@ import { ZodValidationPipe } from 'src/model/zod-validation/zod-validation.pipe'
 import { LoginSchema } from 'src/model/auth-schema/loginSchema';
 import { RegisterUserSchema } from 'src/model/auth-schema/registerUserSchema';
 import { RegisterUserDTO } from 'src/model/auth-schema/registerUserSchema';
+import { Routes } from 'src/utils/constant';
+import { Auth } from 'src/utils/decorator';
 
-@Controller('auth')
+@Controller(Routes.AUTH)
 export class AuthController {
   constructor(private authService: AuthService) {}
 
@@ -26,7 +28,7 @@ export class AuthController {
 
   @UseGuards(JwtGuard)
   @Get('status')
-  async checkStatus() {
-    return 'user sudah login';
+  async checkStatus(@Auth() user) {
+    return { username: user.name };
   }
 }

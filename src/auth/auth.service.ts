@@ -6,9 +6,9 @@ import {
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UserService } from 'src/user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
 import { RegisterUserDTO } from 'src/model/auth-schema/registerUserSchema';
 import { LoginDto } from '../model/auth-schema/loginSchema';
+import { compareHash, hashPin } from 'src/utils/helper';
 
 @Injectable()
 export class AuthService {
@@ -22,7 +22,7 @@ export class AuthService {
     const { name, pin, alamat, kelas } = registerUserDto;
     const saltRounds = 10;
 
-    const hashedPin = await bcrypt.hash(pin, saltRounds).catch((err) => {
+    const hashedPin = await hashPin(pin, saltRounds).catch((err) => {
       console.log(err);
       throw new HttpException('Failed to hash password', 500);
     });
@@ -51,7 +51,7 @@ export class AuthService {
     if (!matchUser)
       throw new UnauthorizedException('name or password is wrong');
 
-    const comparePassword = await bcrypt.compare(pin, matchUser.pin);
+    const comparePassword = await compareHash(pin, matchUser.pin);
     if (!comparePassword)
       throw new UnauthorizedException('name or password is wrong');
 

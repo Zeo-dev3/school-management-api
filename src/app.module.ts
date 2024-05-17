@@ -9,8 +9,6 @@ import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import * as redisStore from 'cache-manager-redis-store';
 import type { RedisClientOptions } from 'redis';
-import { ChatModule } from './chat/chat.module';
-
 @Module({
   imports: [
     CacheModule.register<RedisClientOptions>({
@@ -28,7 +26,6 @@ import { ChatModule } from './chat/chat.module';
     CanteenModule,
     UserModule,
     SubjectsModule,
-    ChatModule,
   ],
   controllers: [],
   providers: [

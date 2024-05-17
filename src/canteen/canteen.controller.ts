@@ -6,7 +6,6 @@ import {
   ParseIntPipe,
   Post,
   Put,
-  Query,
 } from '@nestjs/common';
 import { CanteenService } from './canteen.service';
 import { ZodValidationPipe } from 'src/model/zod-validation/zod-validation.pipe';
@@ -14,8 +13,9 @@ import { CanteenProductDto } from 'src/model/canteen-schema/canteenProductSchema
 import { CanteenProductSchema } from 'src/model/canteen-schema/canteenProductSchema';
 import { CanteenCategoryDto } from 'src/model/canteen-schema/canteenCategorySchema';
 import { CanteenCategorySchema } from 'src/model/canteen-schema/canteenCategorySchema';
+import { Routes } from 'src/utils/constant';
 
-@Controller('canteen')
+@Controller(Routes.CANTEEN)
 export class CanteenController {
   constructor(private canteenService: CanteenService) {}
 
@@ -48,16 +48,5 @@ export class CanteenController {
     categoryData: CanteenCategoryDto,
   ) {
     return this.canteenService.addCategory(categoryData);
-  }
-
-  @Post('/test/:id')
-  test(@Body() productData, @Query('id') id: number) {
-    console.log(id);
-    return { productData, id };
-  }
-
-  @Get('halo')
-  tessss() {
-    return 'hello';
   }
 }
