@@ -10,6 +10,10 @@ http://localhost:8000
 
 ## Endpoints
 
+# endpoint api doc
+
+/api-doc
+
 # 1. Canteen products api
 
 ### 1. Get products

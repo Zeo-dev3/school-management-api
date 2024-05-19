@@ -9,6 +9,7 @@ import { CacheInterceptor, CacheModule } from '@nestjs/cache-manager';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import * as redisStore from 'cache-manager-redis-store';
 import type { RedisClientOptions } from 'redis';
+
 @Module({
   imports: [
     CacheModule.register<RedisClientOptions>({
